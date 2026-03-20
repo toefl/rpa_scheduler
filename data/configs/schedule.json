@@ -1,0 +1,18 @@
+{
+  "01 Проверка телефона в шапке": {
+    "enabled": true,
+    "last_run": "01.08.2025 15:48",
+    "priority": 1,
+    "main_file": "C:\\Users\\ARBikmuhametov\\YandexDisk\\ЦКК BIRPA\\RPA\\rpa_development\\projects\\01 Проверка телефона в шапке\\src\\main.pix",
+    "cron": "0 0 23 ? * TUE,THU *",
+    "_comment_cron": "В 23:00:00 каждый вторник и четверг"
+  },
+  "02 Проверка формы на странице автоматизации": {
+    "enabled": true,
+    "last_run": "10.07.2025 11:56",
+    "priority": 2,
+    "main_file": "C:\\Users\\ARBikmuhametov\\YandexDisk\\ЦКК BIRPA\\RPA\\rpa_development\\projects\\02 Проверка формы на странице автоматизации\\src\\main.pix",
+    "cron": "0 0 10-12,15-17 ? FEB,MAR,OCT TUE,THU *",
+    "_comment_cron": "Каждый час с 10:00 до 12:00, каждый час с 15:00 до 17:00, каждый вторник и четверг в феврале, марте и октябре"
+  }
+}
