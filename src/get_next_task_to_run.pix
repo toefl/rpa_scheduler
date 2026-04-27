@@ -7,34 +7,44 @@
     <Childs>
       <AbstractStep z:Id="i3" i:type="CommentStep">
         <Childs />
+        <HeightOnFlowchart>50</HeightOnFlowchart>
         <Id>0c4a83ad-fd19-43c2-897b-acd4358ce0a9</Id>
         <Parent z:Ref="i2" />
+        <PositionOnFlowchart xmlns:d5p1="http://schemas.datacontract.org/2004/07/System.Numerics" i:nil="true" />
         <PropertyValues />
         <SelectedOptionId i:nil="true" />
+        <WidthOnFlowchart>360</WidthOnFlowchart>
         <IsCollapsed>false</IsCollapsed>
-        <Text>// ===================================================
-// Описание:
-// Скрипт проверяет необходимость запуска проектов (по расписанию, приоритету и флагу enabled).
-// Формирует список активных проектов, вычисляет для каждого момент следующего триггера в соответствии с cron-выражением.
-// В результирующий словарь global_context добавляет:
-//   - ключ "selected_project_name" (имя выбранного для запуска проекта)
-//   - ключ "main_file" (путь к стартовому скрипту выбранного проекта)
-// Если нет подходящих задач — только логирует вывод. При выборе проекта также обновляет сведения о последнем запуске непосредственно в глобальном расписании (global_context["schedule"]).
-// ===================================================
+        <Text>### Описание
 
-// Входные данные:
-//   - global_context (Dictionary&lt;string, object&gt;) — глобальный контекст, должен содержать ключ "schedule" (список проектов), значение по умолчанию: new Dictionary&lt;string, object&gt;()
+Скрипт определяет, нужно ли запускать проекты на основе расписания (cron‑выражений), приоритета и флага `enabled`, формирует список активных проектов и вычисляет для каждого момент следующего триггера. В выбранный для запуска проект вносит обновление времени последнего запуска, а в `global_context` добавляет сведения о выбранном проекте и его стартовом скрипте.
 
-// Выходные данные:
-//   - global_context["selected_project_name"] (string) — имя выбранного для запуска проекта
-//   - global_context["main_file"] (string) — путь к стартовому скрипту выбранного проекта
-//   - global_context["schedule"] (JsonElement) — обновляется: в расписании выбранного проекта поле "last_run" меняется на текущее время (как строка)
-//   - (side effect) schedule.json (файл) — обновлённая версия глобального расписания с корректным временем последнего запуска задачи</Text>
+| Направление | Аргумент | Тип | Описание |
+| :--- | :--- | :--- | :--- |
+| **InOut** | `global_context` | Dictionary&lt;string, object&gt; | Глобальный контекст, должен содержать ключ `schedule` (список проектов), значение по умолчанию: `new Dictionary&lt;string, object&gt;()`. |
+| **Out** | `global_context["selected_project_name"]` | string | Имя выбранного для запуска проекта. |
+| **Out** | `global_context["main_file"]` | string | Путь к стартовому скрипту выбранного проекта. |
+| **InOut** | `global_context["schedule"]` | JsonElement | Глобальное расписание проектов; для выбранного проекта поле `last_run` обновляется текущим временем (в строковом представлении). |
+
+1. Проверяет необходимость запуска проектов по расписанию, приоритету и флагу `enabled`.
+2. Формирует список активных проектов и вычисляет для каждого момент следующего триггера по cron‑выражению.
+3. Выбирает подходящий проект для запуска:  
+   3.1. записывает его имя в `global_context["selected_project_name"]`;  
+   3.2. записывает путь к его стартовому скрипту в `global_context["main_file"]`;  
+   3.3. обновляет в `global_context["schedule"]` поле `last_run` выбранного проекта.
+4. Если подходящих задач нет, только логирует информацию, не изменяя ключи выбора проекта.
+5. Сохраняет обновлённое расписание в файл `schedule.json` как побочный эффект.
+
+&gt; **Условие:** В `global_context` должен быть корректно задан ключ `schedule`; при отсутствии подходящих задач изменения ограничиваются логированием, выбор проекта не выполняется.
+
+---</Text>
       </AbstractStep>
       <AbstractStep z:Id="i4" i:type="ExecutedStep">
         <Childs />
+        <HeightOnFlowchart>50</HeightOnFlowchart>
         <Id>6bbfb195-d62f-422f-84f6-963a69d77367</Id>
         <Parent z:Ref="i2" />
+        <PositionOnFlowchart xmlns:d5p1="http://schemas.datacontract.org/2004/07/System.Numerics" i:nil="true" />
         <PropertyValues>
           <PropertyValue z:Id="i5">
             <PropertyName>Value</PropertyName>
@@ -54,6 +64,7 @@
           </PropertyValue>
         </PropertyValues>
         <SelectedOptionId i:nil="true" />
+        <WidthOnFlowchart>360</WidthOnFlowchart>
         <AutoCloseMode>None</AutoCloseMode>
         <EnableStatus>true</EnableStatus>
         <ExceptionHandlingMode>Default</ExceptionHandlingMode>
@@ -67,8 +78,10 @@
             <Childs>
               <AbstractStep z:Id="i9" i:type="ExecutedStep">
                 <Childs />
+                <HeightOnFlowchart>50</HeightOnFlowchart>
                 <Id>7e7e6907-d9e0-49a8-b224-36f1789cb6d3</Id>
                 <Parent z:Ref="i8" />
+                <PositionOnFlowchart xmlns:d9p1="http://schemas.datacontract.org/2004/07/System.Numerics" i:nil="true" />
                 <PropertyValues>
                   <PropertyValue z:Id="i10">
                     <PropertyName>Value</PropertyName>
@@ -97,6 +110,7 @@
                   </PropertyValue>
                 </PropertyValues>
                 <SelectedOptionId i:nil="true" />
+                <WidthOnFlowchart>360</WidthOnFlowchart>
                 <AutoCloseMode>None</AutoCloseMode>
                 <EnableStatus>true</EnableStatus>
                 <ExceptionHandlingMode>Default</ExceptionHandlingMode>
@@ -106,8 +120,10 @@
               </AbstractStep>
               <AbstractStep z:Id="i12" i:type="ExecutedStep">
                 <Childs />
+                <HeightOnFlowchart>50</HeightOnFlowchart>
                 <Id>a35534df-2017-4efe-80a0-6677a5d65383</Id>
                 <Parent z:Ref="i8" />
+                <PositionOnFlowchart xmlns:d9p1="http://schemas.datacontract.org/2004/07/System.Numerics" i:nil="true" />
                 <PropertyValues>
                   <PropertyValue z:Id="i13">
                     <PropertyName>CSCode</PropertyName>
@@ -119,6 +135,7 @@
                   </PropertyValue>
                 </PropertyValues>
                 <SelectedOptionId i:nil="true" />
+                <WidthOnFlowchart>360</WidthOnFlowchart>
                 <AutoCloseMode>None</AutoCloseMode>
                 <EnableStatus>true</EnableStatus>
                 <ExceptionHandlingMode>Default</ExceptionHandlingMode>
@@ -127,8 +144,10 @@
                 <_activityFullName>BR.Core.Base.ExecuteCSCode</_activityFullName>
               </AbstractStep>
             </Childs>
+            <HeightOnFlowchart i:nil="true" />
             <Id>1166589c-6f54-4987-b6bf-35020a936c91</Id>
             <Parent z:Ref="i7" />
+            <PositionOnFlowchart xmlns:d7p1="http://schemas.datacontract.org/2004/07/System.Numerics" i:nil="true" />
             <PropertyValues>
               <PropertyValue z:Id="i14">
                 <PropertyName>Collection</PropertyName>
@@ -156,6 +175,7 @@
               </PropertyValue>
             </PropertyValues>
             <SelectedOptionId i:nil="true" />
+            <WidthOnFlowchart i:nil="true" />
             <AutoCloseMode>None</AutoCloseMode>
             <EnableStatus>true</EnableStatus>
             <ExceptionHandlingMode>Default</ExceptionHandlingMode>
@@ -164,10 +184,13 @@
             <_activityFullName>BR.Core.Base.LoopForEach</_activityFullName>
           </AbstractStep>
         </Childs>
+        <HeightOnFlowchart i:nil="true" />
         <Id>c41ba77f-b8df-45a2-a1d0-e41d660b99b8</Id>
         <Parent z:Ref="i2" />
+        <PositionOnFlowchart xmlns:d5p1="http://schemas.datacontract.org/2004/07/System.Numerics" i:nil="true" />
         <PropertyValues />
         <SelectedOptionId i:nil="true" />
+        <WidthOnFlowchart i:nil="true" />
         <AutoCloseMode>None</AutoCloseMode>
         <EnableStatus>true</EnableStatus>
         <ExceptionHandlingMode>Default</ExceptionHandlingMode>
@@ -185,10 +208,13 @@
                     <Childs>
                       <AbstractStep z:Id="i21" i:type="ExecutedStep">
                         <Childs />
+                        <HeightOnFlowchart>50</HeightOnFlowchart>
                         <Id>50232bab-276e-47a7-af3a-03211bd4fd42</Id>
                         <Parent z:Ref="i20" />
+                        <PositionOnFlowchart xmlns:d13p1="http://schemas.datacontract.org/2004/07/System.Numerics" i:nil="true" />
                         <PropertyValues />
                         <SelectedOptionId i:nil="true" />
+                        <WidthOnFlowchart>360</WidthOnFlowchart>
                         <AutoCloseMode>None</AutoCloseMode>
                         <EnableStatus>true</EnableStatus>
                         <ExceptionHandlingMode>Default</ExceptionHandlingMode>
@@ -197,10 +223,13 @@
                         <_activityFullName>BR.Core.Base.ContinueLoop</_activityFullName>
                       </AbstractStep>
                     </Childs>
+                    <HeightOnFlowchart i:nil="true" />
                     <Id>c71e2fc4-6814-4fbf-a6b8-88548109205d</Id>
                     <Parent z:Ref="i19" />
+                    <PositionOnFlowchart xmlns:d11p1="http://schemas.datacontract.org/2004/07/System.Numerics" i:nil="true" />
                     <PropertyValues />
                     <SelectedOptionId i:nil="true" />
+                    <WidthOnFlowchart i:nil="true" />
                     <AutoCloseMode>None</AutoCloseMode>
                     <EnableStatus>true</EnableStatus>
                     <ExceptionHandlingMode>Default</ExceptionHandlingMode>
@@ -210,10 +239,13 @@
                   </AbstractStep>
                   <AbstractStep z:Id="i22" i:type="ExecutedStep">
                     <Childs />
+                    <HeightOnFlowchart i:nil="true" />
                     <Id>27028e6b-fcab-4d5f-a4b8-5c79543ee16e</Id>
                     <Parent z:Ref="i19" />
+                    <PositionOnFlowchart xmlns:d11p1="http://schemas.datacontract.org/2004/07/System.Numerics" i:nil="true" />
                     <PropertyValues />
                     <SelectedOptionId i:nil="true" />
+                    <WidthOnFlowchart i:nil="true" />
                     <AutoCloseMode>None</AutoCloseMode>
                     <EnableStatus>true</EnableStatus>
                     <ExceptionHandlingMode>Default</ExceptionHandlingMode>
@@ -222,8 +254,10 @@
                     <_activityFullName>BR.Core.Base.IfFalse</_activityFullName>
                   </AbstractStep>
                 </Childs>
+                <HeightOnFlowchart i:nil="true" />
                 <Id>dd7cd7b5-136b-45d9-9f52-3123c7412bd5</Id>
                 <Parent z:Ref="i18" />
+                <PositionOnFlowchart xmlns:d9p1="http://schemas.datacontract.org/2004/07/System.Numerics" i:nil="true" />
                 <PropertyValues>
                   <PropertyValue z:Id="i23">
                     <PropertyName>Condition</PropertyName>
@@ -235,6 +269,7 @@
                   </PropertyValue>
                 </PropertyValues>
                 <SelectedOptionId i:nil="true" />
+                <WidthOnFlowchart i:nil="true" />
                 <AutoCloseMode>None</AutoCloseMode>
                 <EnableStatus>true</EnableStatus>
                 <ExceptionHandlingMode>Default</ExceptionHandlingMode>
@@ -244,8 +279,10 @@
               </AbstractStep>
               <AbstractStep z:Id="i24" i:type="ExecutedStep">
                 <Childs />
+                <HeightOnFlowchart>50</HeightOnFlowchart>
                 <Id>41c6a581-7f00-4920-964c-5c675253aaf6</Id>
                 <Parent z:Ref="i18" />
+                <PositionOnFlowchart xmlns:d9p1="http://schemas.datacontract.org/2004/07/System.Numerics" i:nil="true" />
                 <PropertyValues>
                   <PropertyValue z:Id="i25">
                     <PropertyName>Expression</PropertyName>
@@ -281,6 +318,7 @@
                   </PropertyValue>
                 </PropertyValues>
                 <SelectedOptionId i:nil="true" />
+                <WidthOnFlowchart>360</WidthOnFlowchart>
                 <AutoCloseMode>None</AutoCloseMode>
                 <EnableStatus>true</EnableStatus>
                 <ExceptionHandlingMode>Default</ExceptionHandlingMode>
@@ -290,8 +328,10 @@
               </AbstractStep>
               <AbstractStep z:Id="i29" i:type="ExecutedStep">
                 <Childs />
+                <HeightOnFlowchart>50</HeightOnFlowchart>
                 <Id>3262720b-9dce-4deb-8b00-37dfbf6d1254</Id>
                 <Parent z:Ref="i18" />
+                <PositionOnFlowchart xmlns:d9p1="http://schemas.datacontract.org/2004/07/System.Numerics" i:nil="true" />
                 <PropertyValues>
                   <PropertyValue z:Id="i30">
                     <PropertyName>CSCode</PropertyName>
@@ -313,6 +353,7 @@ foreach (var kvp in project)
                   </PropertyValue>
                 </PropertyValues>
                 <SelectedOptionId i:nil="true" />
+                <WidthOnFlowchart>360</WidthOnFlowchart>
                 <AutoCloseMode>None</AutoCloseMode>
                 <EnableStatus>true</EnableStatus>
                 <ExceptionHandlingMode>Default</ExceptionHandlingMode>
@@ -321,8 +362,10 @@ foreach (var kvp in project)
                 <_activityFullName>BR.Core.Base.ExecuteCSCode</_activityFullName>
               </AbstractStep>
             </Childs>
+            <HeightOnFlowchart i:nil="true" />
             <Id>3b90a035-876f-488a-bbeb-37385eed8752</Id>
             <Parent z:Ref="i17" />
+            <PositionOnFlowchart xmlns:d7p1="http://schemas.datacontract.org/2004/07/System.Numerics" i:nil="true" />
             <PropertyValues>
               <PropertyValue z:Id="i31">
                 <PropertyName>Collection</PropertyName>
@@ -350,6 +393,7 @@ foreach (var kvp in project)
               </PropertyValue>
             </PropertyValues>
             <SelectedOptionId i:nil="true" />
+            <WidthOnFlowchart i:nil="true" />
             <AutoCloseMode>None</AutoCloseMode>
             <EnableStatus>true</EnableStatus>
             <ExceptionHandlingMode>Default</ExceptionHandlingMode>
@@ -359,8 +403,10 @@ foreach (var kvp in project)
           </AbstractStep>
           <AbstractStep z:Id="i34" i:type="ExecutedStep">
             <Childs />
+            <HeightOnFlowchart>50</HeightOnFlowchart>
             <Id>d578e6d4-f245-40af-b02f-e11e9a1db594</Id>
             <Parent z:Ref="i17" />
+            <PositionOnFlowchart xmlns:d7p1="http://schemas.datacontract.org/2004/07/System.Numerics" i:nil="true" />
             <PropertyValues>
               <PropertyValue z:Id="i35">
                 <PropertyName>FilePath</PropertyName>
@@ -395,6 +441,7 @@ foreach (var kvp in project)
               </PropertyValue>
             </PropertyValues>
             <SelectedOptionId i:nil="true" />
+            <WidthOnFlowchart>360</WidthOnFlowchart>
             <AutoCloseMode>None</AutoCloseMode>
             <EnableStatus>true</EnableStatus>
             <ExceptionHandlingMode>Default</ExceptionHandlingMode>
@@ -403,10 +450,13 @@ foreach (var kvp in project)
             <_activityFullName>BR.Core.Base.ExecuteScript</_activityFullName>
           </AbstractStep>
         </Childs>
+        <HeightOnFlowchart i:nil="true" />
         <Id>c4f81b8d-cf8e-4d48-b05c-67dbb351d68d</Id>
         <Parent z:Ref="i2" />
+        <PositionOnFlowchart xmlns:d5p1="http://schemas.datacontract.org/2004/07/System.Numerics" i:nil="true" />
         <PropertyValues />
         <SelectedOptionId i:nil="true" />
+        <WidthOnFlowchart i:nil="true" />
         <AutoCloseMode>None</AutoCloseMode>
         <EnableStatus>true</EnableStatus>
         <ExceptionHandlingMode>Default</ExceptionHandlingMode>
@@ -418,8 +468,10 @@ foreach (var kvp in project)
         <Childs>
           <AbstractStep z:Id="i40" i:type="ExecutedStep">
             <Childs />
+            <HeightOnFlowchart>50</HeightOnFlowchart>
             <Id>ad50654c-c22d-4dbf-bd57-b2ab1a6d5647</Id>
             <Parent z:Ref="i39" />
+            <PositionOnFlowchart xmlns:d7p1="http://schemas.datacontract.org/2004/07/System.Numerics" i:nil="true" />
             <PropertyValues>
               <PropertyValue z:Id="i41">
                 <PropertyName>CSCode</PropertyName>
@@ -468,6 +520,7 @@ else
               </PropertyValue>
             </PropertyValues>
             <SelectedOptionId i:nil="true" />
+            <WidthOnFlowchart>360</WidthOnFlowchart>
             <AutoCloseMode>None</AutoCloseMode>
             <EnableStatus>true</EnableStatus>
             <ExceptionHandlingMode>Default</ExceptionHandlingMode>
@@ -477,8 +530,10 @@ else
           </AbstractStep>
           <AbstractStep z:Id="i42" i:type="ExecutedStep">
             <Childs />
+            <HeightOnFlowchart>50</HeightOnFlowchart>
             <Id>6ed66b6f-923a-4ea1-baac-8751fe5ac276</Id>
             <Parent z:Ref="i39" />
+            <PositionOnFlowchart xmlns:d7p1="http://schemas.datacontract.org/2004/07/System.Numerics" i:nil="true" />
             <PropertyValues>
               <PropertyValue z:Id="i43">
                 <PropertyName>FilePath</PropertyName>
@@ -513,6 +568,7 @@ else
               </PropertyValue>
             </PropertyValues>
             <SelectedOptionId i:nil="true" />
+            <WidthOnFlowchart>360</WidthOnFlowchart>
             <AutoCloseMode>None</AutoCloseMode>
             <EnableStatus>true</EnableStatus>
             <ExceptionHandlingMode>Default</ExceptionHandlingMode>
@@ -521,10 +577,13 @@ else
             <_activityFullName>BR.Core.Base.ExecuteScript</_activityFullName>
           </AbstractStep>
         </Childs>
+        <HeightOnFlowchart i:nil="true" />
         <Id>e54ffb82-64cd-4714-a791-d865da0b5667</Id>
         <Parent z:Ref="i2" />
+        <PositionOnFlowchart xmlns:d5p1="http://schemas.datacontract.org/2004/07/System.Numerics" i:nil="true" />
         <PropertyValues />
         <SelectedOptionId i:nil="true" />
+        <WidthOnFlowchart i:nil="true" />
         <AutoCloseMode>None</AutoCloseMode>
         <EnableStatus>true</EnableStatus>
         <ExceptionHandlingMode>Default</ExceptionHandlingMode>
@@ -536,8 +595,10 @@ else
         <Childs>
           <AbstractStep z:Id="i48" i:type="ExecutedStep">
             <Childs />
+            <HeightOnFlowchart>50</HeightOnFlowchart>
             <Id>cb39c37a-303b-4f90-b5a9-9e8e1ccacb71</Id>
             <Parent z:Ref="i47" />
+            <PositionOnFlowchart xmlns:d7p1="http://schemas.datacontract.org/2004/07/System.Numerics" i:nil="true" />
             <PropertyValues>
               <PropertyValue z:Id="i49">
                 <PropertyName>CSCode</PropertyName>
@@ -585,6 +646,7 @@ sb.AppendLine("Время запуска задачи обновлено");</_va
               </PropertyValue>
             </PropertyValues>
             <SelectedOptionId i:nil="true" />
+            <WidthOnFlowchart>360</WidthOnFlowchart>
             <AutoCloseMode>None</AutoCloseMode>
             <EnableStatus>true</EnableStatus>
             <ExceptionHandlingMode>Default</ExceptionHandlingMode>
@@ -594,8 +656,10 @@ sb.AppendLine("Время запуска задачи обновлено");</_va
           </AbstractStep>
           <AbstractStep z:Id="i50" i:type="ExecutedStep">
             <Childs />
+            <HeightOnFlowchart>50</HeightOnFlowchart>
             <Id>b09631a3-ebaa-49e6-95c6-e8c883cc1b48</Id>
             <Parent z:Ref="i47" />
+            <PositionOnFlowchart xmlns:d7p1="http://schemas.datacontract.org/2004/07/System.Numerics" i:nil="true" />
             <PropertyValues>
               <PropertyValue z:Id="i51">
                 <PropertyName>FilePath</PropertyName>
@@ -630,6 +694,7 @@ sb.AppendLine("Время запуска задачи обновлено");</_va
               </PropertyValue>
             </PropertyValues>
             <SelectedOptionId i:nil="true" />
+            <WidthOnFlowchart>360</WidthOnFlowchart>
             <AutoCloseMode>None</AutoCloseMode>
             <EnableStatus>true</EnableStatus>
             <ExceptionHandlingMode>Default</ExceptionHandlingMode>
@@ -638,10 +703,13 @@ sb.AppendLine("Время запуска задачи обновлено");</_va
             <_activityFullName>BR.Core.Base.ExecuteScript</_activityFullName>
           </AbstractStep>
         </Childs>
+        <HeightOnFlowchart i:nil="true" />
         <Id>4abd1fb1-8929-4ca7-b07d-c7d925164a4f</Id>
         <Parent z:Ref="i2" />
+        <PositionOnFlowchart xmlns:d5p1="http://schemas.datacontract.org/2004/07/System.Numerics" i:nil="true" />
         <PropertyValues />
         <SelectedOptionId i:nil="true" />
+        <WidthOnFlowchart i:nil="true" />
         <AutoCloseMode>None</AutoCloseMode>
         <EnableStatus>true</EnableStatus>
         <ExceptionHandlingMode>Default</ExceptionHandlingMode>
@@ -650,10 +718,13 @@ sb.AppendLine("Время запуска задачи обновлено");</_va
         <_activityFullName>BR.Core.Base.Container</_activityFullName>
       </AbstractStep>
     </Childs>
+    <HeightOnFlowchart i:nil="true" />
     <Id>b4e0508b-500c-49eb-b88f-68cd9825e29a</Id>
     <Parent i:nil="true" />
+    <PositionOnFlowchart xmlns:d3p1="http://schemas.datacontract.org/2004/07/System.Numerics" i:nil="true" />
     <PropertyValues />
     <SelectedOptionId i:nil="true" />
+    <WidthOnFlowchart i:nil="true" />
     <AutoCloseMode>None</AutoCloseMode>
     <EnableStatus>true</EnableStatus>
     <ExceptionHandlingMode>Default</ExceptionHandlingMode>
@@ -666,37 +737,37 @@ sb.AppendLine("Время запуска задачи обновлено");</_va
   <Params>
     <Parameter z:Id="i55">
       <DefaultValueExpression>new Dictionary&lt;string, object&gt;()</DefaultValueExpression>
-      <Description></Description>
+      <Description>Глобальный контекст выполнения приложения. Содержит пути, конфигурации и динамические параметры.</Description>
       <Name>global_context</Name>
       <RunnerType>None</RunnerType>
-      <TypeString>System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Object, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]</TypeString>
+      <TypeString>System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]</TypeString>
     </Parameter>
   </Params>
   <PlatformVersion xmlns:d2p1="http://schemas.datacontract.org/2004/07/System">
-    <d2p1:_Build>6</d2p1:_Build>
-    <d2p1:_Major>2</d2p1:_Major>
-    <d2p1:_Minor>27</d2p1:_Minor>
+    <d2p1:_Build>1</d2p1:_Build>
+    <d2p1:_Major>3</d2p1:_Major>
+    <d2p1:_Minor>1</d2p1:_Minor>
     <d2p1:_Revision>0</d2p1:_Revision>
   </PlatformVersion>
   <TemplateVersion xmlns:d2p1="http://schemas.datacontract.org/2004/07/System" i:nil="true" />
   <Variables xmlns:d2p1="http://schemas.datacontract.org/2004/07/BR.Logic.Params">
     <d2p1:Variable z:Id="i56">
       <d2p1:DefaultValueExpression>"get_next_task_to_run"</d2p1:DefaultValueExpression>
-      <d2p1:Description></d2p1:Description>
+      <d2p1:Description>Имя текущего скрипта планировщика, используется для логирования и отладки</d2p1:Description>
       <d2p1:Name>script_name</d2p1:Name>
       <d2p1:TypeString>System.String</d2p1:TypeString>
     </d2p1:Variable>
     <d2p1:Variable z:Id="i57">
       <d2p1:DefaultValueExpression>new List&lt;Dictionary&lt;string, object&gt;&gt;()</d2p1:DefaultValueExpression>
-      <d2p1:Description></d2p1:Description>
+      <d2p1:Description>Список всех проектов, участвующих в расписании, с их параметрами (cron‑выражения, приоритеты, флаги enabled и др.).</d2p1:Description>
       <d2p1:Name>projects</d2p1:Name>
-      <d2p1:TypeString>System.Collections.Generic.List`1[[System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Object, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]</d2p1:TypeString>
+      <d2p1:TypeString>System.Collections.Generic.List`1[[System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]</d2p1:TypeString>
     </d2p1:Variable>
     <d2p1:Variable z:Id="i58">
       <d2p1:DefaultValueExpression>new List&lt;Dictionary&lt;string, object&gt;&gt;()</d2p1:DefaultValueExpression>
-      <d2p1:Description></d2p1:Description>
+      <d2p1:Description>Подмножество проектов из projects, удовлетворяющих условиям запуска в текущий момент (по cron‑расписанию, приоритету и флагу enabled).</d2p1:Description>
       <d2p1:Name>executable_projects</d2p1:Name>
-      <d2p1:TypeString>System.Collections.Generic.List`1[[System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Object, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]</d2p1:TypeString>
+      <d2p1:TypeString>System.Collections.Generic.List`1[[System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]</d2p1:TypeString>
     </d2p1:Variable>
   </Variables>
   <Version i:nil="true" />
